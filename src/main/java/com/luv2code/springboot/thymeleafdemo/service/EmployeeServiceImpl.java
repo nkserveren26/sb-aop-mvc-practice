@@ -3,6 +3,8 @@ package com.luv2code.springboot.thymeleafdemo.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.luv2code.springboot.thymeleafdemo.dao.SequenceRepository;
+import com.luv2code.springboot.thymeleafdemo.entity.SequenceEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +15,15 @@ import com.luv2code.springboot.thymeleafdemo.entity.Employee;
 public class EmployeeServiceImpl implements EmployeeService {
 
 	private EmployeeRepository employeeRepository;
+
+	private SequenceRepository sequenceRepository;
 	
 	@Autowired
-	public EmployeeServiceImpl(EmployeeRepository theEmployeeRepository) {
+	public EmployeeServiceImpl(
+			EmployeeRepository theEmployeeRepository,
+			SequenceRepository theSequenceRepository) {
 		employeeRepository = theEmployeeRepository;
+		sequenceRepository = theSequenceRepository;
 	}
 	
 	@Override
@@ -42,8 +49,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void save(Employee theEmployee) {
-		employeeRepository.save(theEmployee);
+	public Employee save(Employee theEmployee) {
+
+		SequenceEntity entity = new SequenceEntity();
+
+		System.out.println("save前 : " + entity.getSequenceNumber());
+
+		sequenceRepository.save(entity);
+
+		System.out.println("save後 : " + entity.getSequenceNumber());
+
+		Employee employee = employeeRepository.save(theEmployee);
+		return employee;
 	}
 
 	@Override

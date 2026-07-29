@@ -2,6 +2,7 @@ package com.luv2code.springboot.thymeleafdemo.controller;
 
 import java.util.List;
 
+import com.luv2code.springboot.thymeleafdemo.entity.SequenceEntity;
 import com.luv2code.springboot.thymeleafdemo.service.EmployeeService;
 
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.luv2code.springboot.thymeleafdemo.entity.Employee;
 
-@Controller
+@RestController
 @RequestMapping("/employees")
 public class EmployeeController {
 
@@ -60,13 +61,13 @@ public class EmployeeController {
 	}
 
 	@PostMapping("/save")
-	public String saveEmployee(@ModelAttribute("employee") Employee theEmployee) {
+	public Employee saveEmployee(@RequestBody Employee theEmployee) {
 
 		// save the employee
 		employeeService.save(theEmployee);
 
 		// use a redirect to prevent duplicate submissions
-		return "redirect:/employees/list";
+		return theEmployee;
 	}
 
 	@GetMapping("/delete")

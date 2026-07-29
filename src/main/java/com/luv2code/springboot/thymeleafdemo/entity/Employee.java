@@ -55,7 +55,9 @@ public class Employee {
 	}
 
 	public void setId(int id) {
+		System.out.println("Setting employee id");
 		this.id = id;
+		System.out.println("Completed setting employee id");
 	}
 
 	public String getFirstName() {
