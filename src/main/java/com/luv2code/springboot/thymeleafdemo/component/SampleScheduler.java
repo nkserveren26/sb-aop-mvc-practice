@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class SampleScheduler {
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedDelay = 1000)
     @SchedulerLock(
             name = "sampleScheduler",
-            lockAtMostFor = "30s",
-            lockAtLeastFor = "5s"
+            lockAtMostFor = "2m",
+            lockAtLeastFor = "0s"
     )
     public void execute() {
 
@@ -25,7 +25,7 @@ public class SampleScheduler {
 
         try {
             // 実際の処理を想定して、あえて時間のかかる処理にする
-            Thread.sleep(8000);
+            Thread.sleep(120000);
 
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
