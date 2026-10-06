@@ -25,7 +25,7 @@ public class SampleScheduler {
 
         try {
             // 実際の処理を想定して、あえて時間のかかる処理にする
-            Thread.sleep(70000);
+            Thread.sleep(90000);
 
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
