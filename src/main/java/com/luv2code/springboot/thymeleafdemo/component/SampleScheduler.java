@@ -28,9 +28,9 @@ public class SampleScheduler {
             Thread.sleep(20000);
 
             // 意図的にエラーを発生させる
-            throw new RuntimeException("意図的なテストエラー");
+            throw new OutOfMemoryError();
 
-        } catch (RuntimeException | InterruptedException e) {
+        } catch (Exception e) {
             Thread.currentThread().interrupt();
             System.out.println(
                     "[" + LocalDateTime.now() + "] "
