@@ -13,7 +13,7 @@ public class SampleScheduler {
     @SchedulerLock(
             name = "sampleScheduler",
             lockAtMostFor = "1m",
-            lockAtLeastFor = "10s"
+            lockAtLeastFor = "0s"
     )
     public void execute() {
 
@@ -25,7 +25,7 @@ public class SampleScheduler {
 
         try {
             // 実際の処理を想定して、あえて時間のかかる処理にする
-            Thread.sleep(90000);
+            Thread.sleep(10000);
 
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
