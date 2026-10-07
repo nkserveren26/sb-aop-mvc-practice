@@ -25,7 +25,7 @@ public class SampleScheduler {
 
         try {
             // 実際の処理を想定して、あえて時間のかかる処理にする
-            Thread.sleep(10000);
+            Thread.sleep(20000);
 
             // 意図的にエラーを発生させる
             throw new RuntimeException("意図的なテストエラー");
