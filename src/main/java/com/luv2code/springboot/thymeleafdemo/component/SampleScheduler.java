@@ -27,8 +27,15 @@ public class SampleScheduler {
             // 実際の処理を想定して、あえて時間のかかる処理にする
             Thread.sleep(10000);
 
-        } catch (InterruptedException e) {
+            // 意図的にエラーを発生させる
+            throw new RuntimeException("意図的なテストエラー");
+
+        } catch (RuntimeException | InterruptedException e) {
             Thread.currentThread().interrupt();
+            System.out.println(
+                    "[" + LocalDateTime.now() + "] "
+                            + "エラー発生: " + e.getMessage()
+            );
         }
 
         System.out.println(
